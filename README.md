@@ -31,6 +31,12 @@ composer require ahmadwaleed/laravel-blanket
 
 The package will automatically register a service provider.
 
+After installing Blanket, publish its assets using the blanket:wrap Artisan command.
+
+```bash
+php artisan blanket:wrap
+```
+
 This package comes with a migration to store all outgoing http client requests. You can publish the migration file using:
 
 ```bash
