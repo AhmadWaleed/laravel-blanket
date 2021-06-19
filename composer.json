@@ -1,5 +1,5 @@
 {
-    "name": "ahmadwaleed/blanket",
+    "name": "ahmadwaleed/laravel-blanket",
     "description": "A blanket which wraps your laravel http client, and provides dashboard to access logs, retry and debug your http requests.",
     "keywords": [
         "ahmadwaleed",
