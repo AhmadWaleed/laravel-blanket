@@ -123,7 +123,7 @@ Please see [CHANGELOG](CHANGELOG.md) for more information on what has changed re
 
 ## Credits
 
-- [AhmAdWaleed](https://github.com/ahmadwaleed)
+- [AhmadWaleed](https://github.com/ahmadwaleed)
 - [All Contributors]()
 
 ## License
