@@ -13,7 +13,7 @@ class LogClientRequest
 {
     public function handle(ResponseReceived $event): void
     {
-        if (!config('blanket.enabled', true)) {
+        if (! config('blanket.enabled', true)) {
             return;
         }
 
