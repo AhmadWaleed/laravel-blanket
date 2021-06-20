@@ -6,6 +6,11 @@ All notable changes to `blanket` will be documented in this file.
 
 - Initial release
 
-## 1.0.0 - 2021-06-20
+## 1.0.1 - 2021-06-20
 
 - Patch (fix logs counts query issues for mysql)
+
+## 1.0.2 - 2021-06-20
+
+- Patch (supress log handler errors)
+
