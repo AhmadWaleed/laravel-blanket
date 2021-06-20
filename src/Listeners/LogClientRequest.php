@@ -17,23 +17,26 @@ class LogClientRequest
         $response = $event->response;
         $host = parse_url($request->url(), PHP_URL_HOST);
 
-        Log::create([
-            'host' => $host,
-            'url' => $request->url(),
-            'request' => [
-                'body' => $request->body(),
-                'headers' => $request->headers(),
-                'payload' => $this->payload($request),
-                'is_multipart' => $request->isMultipart(),
-            ],
-            'method' => $request->method(),
-            'status' => $response->status(),
-            'response' => [
-                'headers' => $response->headers(),
-                'body' => tap($this->response($response), fn ($response) =>
-                    is_string($response) ? Arr::wrap($response) : $response),
-            ],
-        ]);
+        rescue(
+            fn () =>
+            Log::create([
+                'host' => $host,
+                'url' => $request->url(),
+                'request' => [
+                    'body' => $request->body(),
+                    'headers' => $request->headers(),
+                    'payload' => $this->payload($request),
+                    'is_multipart' => $request->isMultipart(),
+                ],
+                'method' => $request->method(),
+                'status' => $response->status(),
+                'response' => [
+                    'headers' => $response->headers(),
+                    'body' => tap($this->response($response), fn ($response) =>
+                        is_string($response) ? Arr::wrap($response) : $response),
+                ],
+            ])
+        );
     }
 
     private function payload(Request $request): null | array
