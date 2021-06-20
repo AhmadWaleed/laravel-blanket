@@ -13,6 +13,10 @@ class LogClientRequest
 {
     public function handle(ResponseReceived $event): void
     {
+        if (!config('blanket.enabled', true)) {
+            return;
+        }
+
         $request = $event->request;
         $response = $event->response;
         $host = parse_url($request->url(), PHP_URL_HOST);
