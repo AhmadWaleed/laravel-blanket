@@ -123,9 +123,6 @@ return [
     'logs_per_page' => env('BLANKET_LOGS_PER_PAGE', 100),
 ];
 ```
-## Changelog
-
-Please see [CHANGELOG](CHANGELOG.md) for more information on what has changed recently.
 
 ## Credits
 
