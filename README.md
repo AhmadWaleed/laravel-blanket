@@ -9,6 +9,9 @@
 
 Laravel Blanket is a package with wraps laravel http client requests and provide logs for request and response, also give option to retry any request from dashboard and more...
 
+## Desclaimer
+This is highly opinionated fun project which provides very simple web interface and log monitoring. If you need advance monitoring tools consider trying [Debugbar](https://github.com/barryvdh/laravel-debugbar), [Sentry](https://sentry.io/) and [Bugsnag](https://www.bugsnag.com/).
+
 ## Live Demo
 Checkout the demo [here](http://blanketapp.darazhunt.com/blanket) to find out more options and feature...
 
