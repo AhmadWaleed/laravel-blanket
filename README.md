@@ -10,7 +10,7 @@
 Laravel Blanket is a package with wraps laravel http client requests and provide logs for request and response, also give option to retry any request from dashboard and more...
 
 ## Live Demo
-Checkout the demo [here]() to find out more options and feature blanket dashboard provides.
+Checkout the demo [here](http://blanketapp.darazhunt.com/blanket) to find out more options and feature...
 
 ## Screenshots
 ![screen shot light](https://github.com/ahmadwaleed/laravel-blanket/blob/main/screenshot-light.png?raw=true)
