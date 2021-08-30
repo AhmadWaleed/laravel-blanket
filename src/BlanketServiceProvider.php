@@ -49,7 +49,7 @@ class BlanketServiceProvider extends ServiceProvider
     {
         return [
             'prefix' => $this->app['config']->get('blanket.path'),
-            'middleware' => $this->app['config']->get('middlewares'),
+            'middleware' => $this->app['config']->get('blanket.middlewares'),
         ];
     }
 }
