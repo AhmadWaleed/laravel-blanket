@@ -4,11 +4,14 @@ namespace Ahmadwaleed\Blanket\Models;
 
 use Illuminate\Support\Carbon;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\MassPrunable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Log extends Model
 {
     use HasFactory;
+    use MassPrunable;
 
     protected $table = 'blanket_logs';
     public $timestamps = false;
@@ -16,9 +19,9 @@ class Log extends Model
     protected $appends = ['path'];
     protected $casts = ['request' => 'array', 'response' => 'array', 'created_at', 'datetime'];
 
-    public static function booted()
+    public function prunable(): Builder
     {
-        static::creating(fn ($model) => $model->created_at = $model->freshTimestamp());
+        return static::query()->where('created_at', '<=', config('blanket.prune_logs_duration'));
     }
 
     public function getPathAttribute(): string
@@ -26,7 +29,7 @@ class Log extends Model
         return parse_url($this->url, PHP_URL_PATH);
     }
 
-    public function getCreatedAtAttribute(string $date): string
+    public function getCreatedAtAttribute(?string $date): ?string
     {
         return Carbon::parse($date)->diffForHumans();
     }

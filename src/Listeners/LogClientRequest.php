@@ -39,6 +39,7 @@ class LogClientRequest
                     'body' => tap($this->response($response), fn ($response) =>
                         is_string($response) ? Arr::wrap($response) : $response),
                 ],
+                'created_at' => now(),
             ])
         );
     }

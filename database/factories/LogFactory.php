@@ -30,6 +30,7 @@ class LogFactory extends Factory
             'host' => $host,
             'status' => $this->faker->randomElement(array_keys(Response::$statusTexts)),
             'method' => $this->faker->randomElement(['GET', 'POST', 'PUT', 'PATCH', 'DELETE']),
+            'created_at' => $this->faker->date
         ];
     }
 }

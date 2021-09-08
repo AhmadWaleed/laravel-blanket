@@ -63,4 +63,23 @@ return [
     */
 
     'logs_per_page' => env('BLANKET_LOGS_PER_PAGE', 100),
+
+    /*
+    |--------------------------------------------------------------------------
+    | Prune Blanket Logs Duration
+    |--------------------------------------------------------------------------
+    |
+    | Duration in which blanket logs will be deleted periodically
+    | that are no longer needed. You should schedule the model:prune
+    | Artisan command in your application's App\Console\Kernel class.
+    | You are free to specify the appropriate interval here at which
+    | this command should be run:
+    | ```
+    | $schedule->command('model:prune', [
+    |   '--model' => [Ahmadwaleed\Blanket\Models\Log::class],
+    | ])->daily();
+    |
+    */
+
+    'prune_logs_duration' => env('PRUNE_LOGS_DURATION', now()->subMonth()),
 ];
