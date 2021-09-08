@@ -21,7 +21,7 @@
         "guzzlehttp/guzzle": "^7.3",
         "illuminate/contracts": "8.*",
         "illuminate/http": "8.*",
-        "illuminate/support": "8.*"
+        "illuminate/support": "^8.45"
     },
     "require-dev": {
         "brianium/paratest": "^6.2",
