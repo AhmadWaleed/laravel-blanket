@@ -10,7 +10,7 @@ return new class extends Migration
     {
         Schema::create('blanket_logs', function (Blueprint $table): void {
             $table->id();
-            $table->string('url');
+            $table->longtext('url');
             $table->string('host');
             $table->string('method');
             $table->integer('status');
