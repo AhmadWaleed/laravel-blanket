@@ -149,7 +149,7 @@ return [
 ## Credits
 
 - [AhmadWaleed](https://github.com/ahmadwaleed)
-- [All Contributors]()
+- [All Contributors](https://github.com/AhmadWaleed/laravel-blanket/graphs/contributors)
 
 ## License
 
