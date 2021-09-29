@@ -11,7 +11,7 @@ class LogController
 {
     public function index(Request $request)
     {
-        $length = config('app.logs_per_page', 100);
+        $length = (int) config('blanket.logs_per_page', 100);
         $take = (int) $request->get('take', $length);
 
         $logs = Log::query()

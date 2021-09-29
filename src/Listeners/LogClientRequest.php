@@ -88,6 +88,6 @@ class LogClientRequest
 
     private function contentInLimits(string $content): bool
     {
-        return mb_strlen($content) / 1000 <= 64; // @todo: allow user to manage limit
+        return mb_strlen($content) / 1000 <= (int) config('blanket.log_response_limit', 64);
     }
 }
