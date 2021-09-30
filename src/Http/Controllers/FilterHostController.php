@@ -16,7 +16,7 @@ class FilterHostController
             ->when(
                 $request->filled('host_filter'),
                 fn (Builder $query) =>
-                $query->where('host', 'LIKE', "%$request->host_filter%")
+                $query->where('host', 'LIKE', "%{$request->host_filter}%")
             )
             ->take(5)
             ->get()

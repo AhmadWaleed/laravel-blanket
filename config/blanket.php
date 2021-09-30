@@ -1,6 +1,6 @@
 <?php
 return [
-/*
+    /*
     |--------------------------------------------------------------------------
     | Dashboard Enabled
     |--------------------------------------------------------------------------
@@ -10,6 +10,34 @@ return [
     */
 
     'enabled' => env('BLANKET_ENABLED', true),
+
+    /*
+    |--------------------------------------------------------------------------
+    | Hide Sensitive Data
+    |--------------------------------------------------------------------------
+    |
+    | Here you can specify the fields which might contain sensitive data, those
+    | fields will hidden when saving logs. You can also specify nested keys in
+    | config. Example:
+    | 'response' => [
+    |   'client.id',
+    |   'client.secret',
+    | ],
+    */
+
+    'hide_sensitive_data' => [
+        'headers' => [
+            'Authorization',
+            'php-auth-pw',
+        ],
+
+        'request' => [
+            'password',
+            'password_confirmation',
+        ],
+
+        'response' => []
+    ],
 
     /*
     |--------------------------------------------------------------------------
