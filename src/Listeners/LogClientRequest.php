@@ -19,6 +19,7 @@ class LogClientRequest
 
         $request = $event->request;
         $response = $event->response;
+        $hidden = config('blanket.hide_sensitive_data');
         $host = parse_url($request->url(), PHP_URL_HOST);
 
         rescue(
@@ -28,16 +29,17 @@ class LogClientRequest
                 'url' => $request->url(),
                 'request' => [
                     'body' => $request->body(),
-                    'headers' => $request->headers(),
-                    'payload' => $this->payload($request),
+                    'headers' => $this->hideParameters($request->headers(), $hidden['headers'] ?? []),
+                    'payload' => $this->hideParameters($this->payload($request), $hidden['request'] ?? []),
                     'is_multipart' => $request->isMultipart(),
                 ],
                 'method' => $request->method(),
                 'status' => $response->status(),
                 'response' => [
-                    'headers' => $response->headers(),
-                    'body' => tap($this->response($response), fn ($response) =>
-                        is_string($response) ? Arr::wrap($response) : $response),
+                    'headers' => $this->hideParameters($response->headers(), $hidden['headers'] ?? []),
+                    'body' => ! is_array($this->response($response))
+                        ? Arr::wrap($response)
+                        : $this->hideParameters($this->response($response), $hidden['response'] ?? []),
                 ],
                 'created_at' => now(),
             ])
@@ -76,14 +78,25 @@ class LogClientRequest
         if (is_array(json_decode($content, true)) && json_last_error() === JSON_ERROR_NONE) {
             return $this->contentInLimits($content)
                 ? json_decode($content, true)
-                : '*** response out of size limit ***';
+                : '*** Purge by blanket ***';
         }
 
         if (Str::startsWith(strtolower($response->header('Content-Type')), 'text/plain')) {
-            return $this->contentInLimits($content) ? $content : '*** response out of size limit ***';
+            return $this->contentInLimits($content) ? $content : '***  Purge by blanket ***';
         }
 
         return $content;
+    }
+
+    protected function hideParameters($data, $hidden): mixed
+    {
+        foreach ($hidden as $parameter) {
+            if (Arr::get($data, $parameter)) {
+                Arr::set($data, $parameter, '********');
+            }
+        }
+
+        return $data;
     }
 
     private function contentInLimits(string $content): bool
