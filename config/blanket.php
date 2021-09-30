@@ -17,8 +17,12 @@ return [
     |--------------------------------------------------------------------------
     |
     | Here you can specify the fields which might contain sensitive data, those
-    | fields will hidden when saving logs.
-    |
+    | fields will hidden when saving logs. You can also specify nested keys in
+    | config. Example:
+    | 'response' => [
+    |   'client.id',
+    |   'client.secret',
+    | ],
     */
 
     'hide_sensitive_data' => [

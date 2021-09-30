@@ -61,4 +61,29 @@ class ClientRecorderTest extends TestCase
         $this->assertSame('********',  $log->response['body']['client_id']);
         $this->assertSame('********',  $log->response['body']['client_secret']);
     }
+
+    public function test_hides_nested_response_body_sensitive_data()
+    {
+        config()->set('blanket.hide_sensitive_data.response', [
+            'client.id',
+            'client.secret',
+        ]);
+
+        Http::fake([
+            '*' => Http::response([
+                'client' => [
+                    'id' => '123xcv',
+                    'secret' => 'YWxhZGRpbjpvcGVuc2VzYW1l',
+                ],
+            ], 204),
+        ]);
+
+
+        Http::post('https://site.com/creds');
+
+        $log = Log::first();
+
+        $this->assertSame('********',  $log->response['body']['client']['id']);
+        $this->assertSame('********',  $log->response['body']['client']['secret']);
+    }
 }
