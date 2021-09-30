@@ -74,15 +74,17 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Encrypt data
+    | Hide Sensitive Data
     |--------------------------------------------------------------------------
     |
-    | Here you can specify whether to encrypt the request and response data
-    | which is stored in the database.
-    |
+    | Here you can specify the fields which might contain sensitive data, those
+    | fields will hidden when saving logs. You can also specify nested keys in
+    | config. Example:
+    | 'response' => [
+    |   'client.id',
+    |   'client.secret',
+    | ],
     */
-
-    'encrypt_data' => env('BLANKET_ENCRYPT_DATA', false),
 
     /*
     |--------------------------------------------------------------------------
