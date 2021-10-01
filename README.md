@@ -85,6 +85,19 @@ return [
     |   'client.secret',
     | ],
     */
+    'hide_sensitive_data' => [
+        'headers' => [
+            'Authorization',
+            'php-auth-pw',
+        ],
+
+        'request' => [
+            'password',
+            'password_confirmation',
+        ],
+
+        'response' => []
+    ],
 
     /*
     |--------------------------------------------------------------------------
