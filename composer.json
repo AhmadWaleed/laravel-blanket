@@ -16,10 +16,10 @@
         }
     ],
     "require": {
-        "php": "8.0.*",
+        "php": "^8.0",
         "ext-json": "*",
         "guzzlehttp/guzzle": "^7.3",
-        "laravel/framework": "^8.50"
+        "laravel/framework": "^8.50|^9.0"
     },
     "require-dev": {
         "brianium/paratest": "^6.2",
