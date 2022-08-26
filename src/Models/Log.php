@@ -37,12 +37,12 @@ class Log extends Model
     public static function counts(): mixed
     {
         return static::query()
-            ->selectRaw("count(*) as `all`")
-            ->selectRaw("count(case when method = 'GET' then 1 end) as `get`")
-            ->selectRaw("count(case when method = 'POST' then 1 end) as `post`")
-            ->selectRaw("count(case when method = 'PUT' then 1 end) as `put`")
-            ->selectRaw("count(case when method = 'PATCH' then 1 end) as `patch`")
-            ->selectRaw("count(case when method = 'DELETE' then 1 end) as `delete`")
+            ->selectRaw("count(*) as all")
+            ->selectRaw("count(case when method = 'GET' then 1 end) as get")
+            ->selectRaw("count(case when method = 'POST' then 1 end) as post")
+            ->selectRaw("count(case when method = 'PUT' then 1 end) as put")
+            ->selectRaw("count(case when method = 'PATCH' then 1 end) as patch")
+            ->selectRaw("count(case when method = 'DELETE' then 1 end) as delete")
             ->first();
     }
 }
