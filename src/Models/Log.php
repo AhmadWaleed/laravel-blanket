@@ -26,7 +26,7 @@ class Log extends Model
 
     public function getPathAttribute(): string
     {
-        return parse_url($this->url, PHP_URL_PATH);
+        return parse_url($this->url, PHP_URL_PATH) ?? '';
     }
 
     public function getCreatedAtAttribute(?string $date): ?string
